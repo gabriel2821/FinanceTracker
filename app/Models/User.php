@@ -31,4 +31,12 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    public function transaction() {
+        return $this->hasMany(Transaction::class, 'user_id');
+    }
+
+    public function category() {
+        return $this->hasMany(Category::class, 'user_id');
+    }
 }
