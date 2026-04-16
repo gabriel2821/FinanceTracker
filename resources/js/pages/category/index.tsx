@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import { dashboard } from '@/routes';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,10 +11,18 @@ import {
 } from '@/components/ui/dialog';
 import TransactionForm from '@/transaction/TransactionForm';
 import { PlusIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CategoryForm from './form';
+import { toast } from 'sonner';
 
 export default function Category() {
+    const { flash } = usePage().props as any;
+
+    useEffect(() => {
+        if (flash.success) {
+            toast.success(flash.success);
+        }
+    }, [flash.success]);
 
     return (
         <div className="p-8">

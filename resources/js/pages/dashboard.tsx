@@ -12,8 +12,10 @@ import TransactionForm from '@/transaction/TransactionForm';
 import { PlusIcon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import StatCard from '../transaction/StatCard';
+import TransactionTable from '../transaction/TransactionTable';
 
-export default function Dashboard({ categories }: { categories: any[] }) {
+export default function Dashboard({ categories, transactions }: { categories: any[]; transactions: any[] }) {
     const [open, setOpen] = useState(false);
     const { flash } = usePage().props as any;
 
@@ -22,6 +24,12 @@ export default function Dashboard({ categories }: { categories: any[] }) {
             toast.success(flash.success);
         }
     }, [flash.success]);
+
+    const stats = {
+        income: transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + parseFloat(t.amount), 0),
+        expenses: transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + parseFloat(t.amount), 0),
+    };
+    const totalBalance = stats.income - stats.expenses;
 
     return (
         <div className="p-8">
@@ -53,28 +61,30 @@ export default function Dashboard({ categories }: { categories: any[] }) {
                 </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {/* Dashboard content placeholder */}
-                <div className="h-40 rounded-xl border border-dashed flex items-center justify-center text-muted-foreground">
-                    <div className="h-40 rounded-xl border border-dashed flex items-center justify-center text-muted-foreground">
-                        <p>total balance</p>
-                        <p>$87.00</p>
-                        <p>Current available funds</p>
-                    </div>
-                    <div className="h-40 rounded-xl border border-dashed flex items-center justify-center text-muted-foreground">
-                        <p>total income</p>
-                        <p>$87.00</p>
-                        <p>Total money received</p>
-                    </div>
-                    <div className="h-40 rounded-xl border border-dashed flex items-center justify-center text-muted-foreground">
-                        <p>total expenses</p>
-                        <p>$87.00</p>
-                        <p>Total money spent</p>
-                    </div>
-                </div>
+            {/* Stats Grid */}
+            <div className="grid gap-4 md:grid-cols-3">
+                <StatCard
+                    title="Total Balance"
+                    amount={totalBalance}
+                    notes="Current available funds"
+                    variant={totalBalance >= 0 ? 'default' : 'danger'}
+                />
+                <StatCard
+                    title="Total Income"
+                    amount={stats.income}
+                    notes="Total money received"
+                    variant="success"
+                />
+                <StatCard
+                    title="Total Expenses"
+                    amount={stats.expenses}
+                    notes="Total money spent"
+                    variant="danger"
+                />
             </div>
+
+            {/* Transactions Table */}
+            <TransactionTable transactions={transactions} />
         </div>
     );
 }
-
-

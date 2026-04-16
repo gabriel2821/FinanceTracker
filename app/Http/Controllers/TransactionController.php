@@ -7,13 +7,13 @@ use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
-    public function index(){
-        return inertia('dashboard', [
-           'transactions' => auth()->user()->transaction()->with('category')->get(),
-            // Add this line to pass categories to the frontend
-            'categories' => auth()->user()->category()->get(['id', 'name']),
-        ]); 
-    }
+    //public function index(){
+    //    return inertia('transaction/index', [
+    //       'transactions' => auth()->user()->transaction()->with('category')->get(),
+    //        // Add this line to pass categories to the frontend
+    //        'categories' => auth()->user()->category()->get(['id', 'name']),
+    //    ]); 
+    //}
 
     public function store(Request $request){
 
@@ -29,5 +29,13 @@ class TransactionController extends Controller
         $request->user()->transaction()->create($validated);
 
         return redirect()->route('dashboard')->with('success', 'Transaction created successfully');
+    }
+
+    public function destroy(Transaction $transaction) {
+        if ($transaction->user_id === auth()->id()) {
+            $transaction->delete();
+            return redirect()->route('dashboard')->with('success', 'Transaction deleted successfully');
+        }
+        return redirect()->route('dashboard')->with('error', 'Transaction not found');
     }
 } 

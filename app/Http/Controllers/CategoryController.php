@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class CategoryController extends Controller
 {
     public function index() {
-        return inertia('category/index');
+        return inertia('category/index', [
+            //'categories' => auth()->user()->category()->get(['id', 'name']),
+        ]);
     }
 
     public function store(Request $request) {
@@ -24,6 +26,6 @@ class CategoryController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with("success", "Category created successfully");
     }
 }
