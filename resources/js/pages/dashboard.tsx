@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import StatCard from '../transaction/StatCard';
 import TransactionTable from '../transaction/TransactionTable';
+import FinanceChart from '../transaction/FinanceChart';
 
 export default function Dashboard({ categories, transactions }: { categories: any[]; transactions: any[] }) {
     const [open, setOpen] = useState(false);
@@ -82,6 +83,9 @@ export default function Dashboard({ categories, transactions }: { categories: an
                     variant="danger"
                 />
             </div>
+
+            {/* Charts Section */}
+            <FinanceChart transactions={transactions} />
 
             {/* Transactions Table */}
             <TransactionTable transactions={transactions} />
