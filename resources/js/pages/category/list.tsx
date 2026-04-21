@@ -20,26 +20,26 @@ export default function CategoryListItem({ id, name, type, onEdit, onDelete }: C
                 {name}
             </td>
             <td className="px-6 py-4">
-                <Badge 
-                    variant={isIncome ? 'secondary' : 'destructive'} 
+                <Badge
+                    variant={isIncome ? 'secondary' : 'destructive'}
                     className="capitalize font-medium"
                 >
                     {type}
                 </Badge>
             </td>
             <td className="px-6 py-4 text-right">
-                <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Button 
-                        variant="ghost" 
-                        size="icon" 
+                <div className="flex justify-end gap-2">
+                    <Button
+                        variant="ghost"
+                        size="icon"
                         className="h-8 w-8 text-muted-foreground hover:text-primary"
                         onClick={() => onEdit({ id, name, type })}
                     >
                         <Edit2 className="h-4 w-4" />
                     </Button>
-                    <Button 
-                        variant="ghost" 
-                        size="icon" 
+                    <Button
+                        variant="ghost"
+                        size="icon"
                         className="h-8 w-8 text-muted-foreground hover:text-destructive"
                         onClick={() => onDelete({ id, name, type })}
                     >
