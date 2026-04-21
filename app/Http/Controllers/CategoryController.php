@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index() {
         return inertia('category/index', [
-            //'categories' => auth()->user()->category()->get(['id', 'name']),
+            'categories' => auth()->user()->category()->get(['id', 'name', 'type']),
         ]);
     }
 
@@ -27,5 +27,35 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('category.index')->with("success", "Category created successfully");
+    }
+    public function update(Request $request, Category $category) {
+        if ($category->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'type' => $request->type,
+        ]);
+
+        return redirect()->route('category.index')->with("success", "Category updated successfully");
+    }
+
+    public function destroy(Category $category) {
+        if ($category->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        // Optional: Check if transactions are linked to this category before deleting
+        // $category->transactions()->delete(); // Or prevent deletion
+
+        $category->delete();
+
+        return redirect()->route('category.index')->with("success", "Category deleted successfully");
     }
 }
