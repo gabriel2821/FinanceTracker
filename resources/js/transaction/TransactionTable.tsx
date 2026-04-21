@@ -40,21 +40,21 @@ export default function TransactionTable({ transactions }: { transactions: Trans
     };
 
     return (
-        <div className="mt-8 rounded-xl border bg-card shadow-sm overflow-hidden">
-            <div className="p-6 border-b">
+        <div className="mt-8 glass rounded-2xl border shadow-sm overflow-hidden">
+            <div className="p-6 border-b border-primary/10">
                 <h3 className="text-lg font-semibold">Recent Transactions</h3>
                 <p className="text-sm text-muted-foreground">A list of your latest financial activities.</p>
             </div>
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left">
-                    <thead className="bg-muted/50 text-muted-foreground font-medium border-b">
+                    <thead className="bg-primary/5 text-primary font-semibold border-b border-primary/10">
                         <tr>
                             <th className="px-6 py-3">Date</th>
                             <th className="px-6 py-3">Notes</th>
                             <th className="px-6 py-3">Category</th>
                             <th className="px-6 py-3">Type</th>
                             <th className="px-6 py-3 text-right">Amount</th>
-                            {/*<th className="px-6 py-3 text-right">Action</th>*/}
+                            <th className="px-6 py-3"></th>
                         </tr>
                     </thead>
                     <tbody className="divide-y">

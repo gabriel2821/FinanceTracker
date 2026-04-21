@@ -52,14 +52,14 @@ export default function Category({ categories }: { categories: any[] }) {
                 </div>
             </div>
 
-            <div className="mb-8 max-w-4xl mx-auto bg-muted/30 p-6 rounded-xl border">
+            <div className="mb-8 max-w-4xl mx-auto glass p-6 rounded-2xl border shadow-sm">
                 <h2 className="text-lg font-semibold mb-4">Add New Category</h2>
                 <CategoryForm />
             </div>
 
-            <div className="mt-8 max-w-4xl mx-auto rounded-xl border bg-card shadow-sm overflow-hidden">
+            <div className="mt-8 max-w-4xl mx-auto glass rounded-2xl border shadow-sm overflow-hidden">
                 <table className="w-full text-sm text-left">
-                    <thead className="bg-muted/50 text-muted-foreground font-medium border-b">
+                    <thead className="bg-primary/5 text-primary font-semibold border-b border-primary/10">
                         <tr>
                             <th className="px-6 py-3 w-full">Category Name</th>
                             <th className="px-6 py-3 whitespace-nowrap">Type</th>

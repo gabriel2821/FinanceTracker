@@ -81,7 +81,7 @@ export default function FinanceChart({ transactions }: { transactions: Transacti
     return (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
             {/* Pie Chart: Expenses by Category */}
-            <Card className="col-span-1 shadow-sm border-muted">
+            <Card className="col-span-1 glass rounded-2xl shadow-sm border-muted">
                 <CardHeader>
                     <CardTitle className="text-lg">Expenses by Category</CardTitle>
                     <CardDescription>Where your money is going</CardDescription>
@@ -113,7 +113,7 @@ export default function FinanceChart({ transactions }: { transactions: Transacti
             </Card>
 
             {/* Bar Chart: Income vs Expense Over Time */}
-            <Card className="col-span-1 md:col-span-1 shadow-sm border-muted">
+            <Card className="col-span-1 md:col-span-1 glass rounded-2xl shadow-sm border-muted">
                 <CardHeader>
                     <CardTitle className="text-lg">Overall Comparison</CardTitle>
                     <CardDescription>Income vs Total Expenses</CardDescription>
@@ -136,7 +136,7 @@ export default function FinanceChart({ transactions }: { transactions: Transacti
             </Card>
 
             {/* Line Chart: Financial Trend */}
-            <Card className="col-span-1 md:col-span-2 lg:col-span-1 shadow-sm border-muted">
+            <Card className="col-span-1 md:col-span-2 lg:col-span-1 glass rounded-2xl shadow-sm border-muted">
                 <CardHeader>
                     <CardTitle className="text-lg">Financial Trend</CardTitle>
                     <CardDescription>Daily income and expense tracking</CardDescription>
